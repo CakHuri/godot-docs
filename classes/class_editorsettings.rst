@@ -307,6 +307,10 @@ Properties
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                       | :ref:`filesystem/tools/oidn/oidn_denoise_path<class_EditorSettings_property_filesystem/tools/oidn/oidn_denoise_path>`                                                                                             |
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`input/buffering/agile_event_flushing<class_EditorSettings_property_input/buffering/agile_event_flushing>`                                                                                                   |
+   +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`input/buffering/use_accumulated_input<class_EditorSettings_property_input/buffering/use_accumulated_input>`                                                                                                 |
+   +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`interface/editor/accept_dialog_cancel_ok_buttons<class_EditorSettings_property_interface/editor/accept_dialog_cancel_ok_buttons>`                                                                           |
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`interface/editor/automatically_open_screenshots<class_EditorSettings_property_interface/editor/automatically_open_screenshots>`                                                                             |
@@ -2361,6 +2365,38 @@ To enable this feature for your specific project, use :ref:`ProjectSettings.rend
 
 ----
 
+.. _class_EditorSettings_property_input/buffering/agile_event_flushing:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **input/buffering/agile_event_flushing** :ref:`🔗<class_EditorSettings_property_input/buffering/agile_event_flushing>`
+
+If ``true``, input events will be flushed just before every idle and physics frame.
+
+If ``false``, these events will be flushed only once per process frame, between iterations of the engine.
+
+Enabling this setting can greatly improve input responsiveness, especially in devices that struggle to run at the project's intended frame rate.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorSettings_property_input/buffering/use_accumulated_input:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **input/buffering/use_accumulated_input** :ref:`🔗<class_EditorSettings_property_input/buffering/use_accumulated_input>`
+
+If ``true``, similar input events sent by the operating system are accumulated. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.
+
+Input accumulation can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage.
+
+\ **Note:** Input accumulation is *enabled* by default.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_EditorSettings_property_interface/editor/accept_dialog_cancel_ok_buttons:
 
 .. rst-class:: classref-property
@@ -2758,6 +2794,8 @@ Consider enabling this if you are developing editor plugins to ensure they only 
 The default **Auto** value will only enable this if the editor was compiled with the ``dev_build=yes`` SCons option (the default is ``dev_build=no``).
 
 \ **Note:** If :ref:`interface/editor/update_continuously<class_EditorSettings_property_interface/editor/update_continuously>` is ``true``, the spinner icon displays in red.
+
+\ **Note:** If the editor was started with the ``--debug-canvas-item-redraw`` :doc:`command line argument <../tutorials/editor/command_line_tutorial>`, the update spinner will *never* display regardless of this setting's value. This is to avoid confusion with what would cause redrawing in real world scenarios.
 
 .. rst-class:: classref-item-separator
 
