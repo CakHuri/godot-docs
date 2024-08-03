@@ -707,10 +707,6 @@ Properties
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`input_devices/buffering/agile_event_flushing<class_ProjectSettings_property_input_devices/buffering/agile_event_flushing>`                                                                           | ``false``                                                                                        |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`input_devices/buffering/android/use_accumulated_input<class_ProjectSettings_property_input_devices/buffering/android/use_accumulated_input>`                                                         | ``true``                                                                                         |
-   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`input_devices/buffering/android/use_input_buffering<class_ProjectSettings_property_input_devices/buffering/android/use_input_buffering>`                                                             | ``true``                                                                                         |
-   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`input_devices/compatibility/legacy_just_pressed_behavior<class_ProjectSettings_property_input_devices/compatibility/legacy_just_pressed_behavior>`                                                   | ``false``                                                                                        |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                       | :ref:`input_devices/pen_tablet/driver<class_ProjectSettings_property_input_devices/pen_tablet/driver>`                                                                                                     |                                                                                                  |
@@ -1526,6 +1522,10 @@ Properties
    | :ref:`String<class_String>`                       | :ref:`rendering/rendering_device/driver.macos<class_ProjectSettings_property_rendering/rendering_device/driver.macos>`                                                                                     |                                                                                                  |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                       | :ref:`rendering/rendering_device/driver.windows<class_ProjectSettings_property_rendering/rendering_device/driver.windows>`                                                                                 |                                                                                                  |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/fallback_to_d3d12<class_ProjectSettings_property_rendering/rendering_device/fallback_to_d3d12>`                                                                           | ``true``                                                                                         |
+   +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/fallback_to_vulkan<class_ProjectSettings_property_rendering/rendering_device/fallback_to_vulkan>`                                                                         | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`rendering/rendering_device/pipeline_cache/enable<class_ProjectSettings_property_rendering/rendering_device/pipeline_cache/enable>`                                                                   | ``true``                                                                                         |
    +---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -6023,30 +6023,6 @@ If ``false``, such events will be flushed only once per process frame, between i
 Enabling this can greatly improve the responsiveness to input, specially in devices that need to run multiple physics frames per visible (process) frame, because they can't run at the target frame rate.
 
 \ **Note:** Currently implemented only on Android.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_input_devices/buffering/android/use_accumulated_input:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **input_devices/buffering/android/use_accumulated_input** = ``true`` :ref:`🔗<class_ProjectSettings_property_input_devices/buffering/android/use_accumulated_input>`
-
-If ``true``, multiple input events will be accumulated into a single input event when possible.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_input_devices/buffering/android/use_input_buffering:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **input_devices/buffering/android/use_input_buffering** = ``true`` :ref:`🔗<class_ProjectSettings_property_input_devices/buffering/android/use_input_buffering>`
-
-If ``true``, input events will be buffered prior to being dispatched.
 
 .. rst-class:: classref-item-separator
 
@@ -11225,6 +11201,34 @@ macOS override for :ref:`rendering/rendering_device/driver<class_ProjectSettings
 :ref:`String<class_String>` **rendering/rendering_device/driver.windows** :ref:`🔗<class_ProjectSettings_property_rendering/rendering_device/driver.windows>`
 
 Windows override for :ref:`rendering/rendering_device/driver<class_ProjectSettings_property_rendering/rendering_device/driver>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_rendering/rendering_device/fallback_to_d3d12:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **rendering/rendering_device/fallback_to_d3d12** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/rendering_device/fallback_to_d3d12>`
+
+If ``true``, the forward renderer will fall back to Direct3D 12 if Vulkan is not supported.
+
+\ **Note:** This setting is implemented only on Windows.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_rendering/rendering_device/fallback_to_vulkan:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **rendering/rendering_device/fallback_to_vulkan** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/rendering_device/fallback_to_vulkan>`
+
+If ``true``, the forward renderer will fall back to Vulkan if Direct3D 12 is not supported.
+
+\ **Note:** This setting is implemented only on Windows.
 
 .. rst-class:: classref-item-separator
 
